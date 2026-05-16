@@ -9,8 +9,10 @@ services:
         value: "3.12.7"
       - key: FLASK_DEBUG
         value: "0"
+      - key: PYTHONDONTWRITEBYTECODE
+        value: "1"
     databases:
-      - name: payroll-db
+      - name: payroll_bf35
         plan: free
         postgresMajorVersion: "15"
     autoDeploy: true

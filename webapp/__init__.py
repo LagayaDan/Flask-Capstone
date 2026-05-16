@@ -1,13 +1,14 @@
 """Flask app factory."""
 from flask import Flask
 from flask_wtf import CSRFProtect
+import os
 
 from webapp import auth, routes
 
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = "capstone-payroll-portal-secret-key-change-me"
+    app.secret_key = os.environ.get("FLASK_SECRET_KEY", "capstone-payroll-portal-secret-key-change-me")
 
     # ---- CSRF protection ---------------------------------------------------
     csrf = CSRFProtect(app)

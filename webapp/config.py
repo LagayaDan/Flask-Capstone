@@ -10,9 +10,13 @@ _repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _repo_root not in sys.path:
     sys.path.insert(0, _repo_root)
 
-# Load .env from the repo root explicitly (local development only)
-dotenv_path = os.path.join(_repo_root, ".env")
-load_dotenv(dotenv_path=dotenv_path, override=False)
+# Load .env only when not running on Render (local development).
+# When running locally, override=True ensures REPO .env values win over
+# any system-level DB_* vars (e.g. Supabase) that may already be set.
+_env_path = os.path.join(_repo_root, ".env")
+_has_render_env = bool(os.getenv("DATABASE_URL"))
+if not _has_render_env and os.path.isfile(_env_path):
+    load_dotenv(dotenv_path=_env_path, override=True)
 
 
 def _build_db_config() -> dict:
