@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}My Payslips{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>My Payslips</h1>
+    <p class="page-subtitle">View your received payslips</p>
+</div>
+
+{% if payslips %}
+<div class="data-section">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Pay Period</th>
+                <th>Sent Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in payslips %}
+            <tr>
+                <td>{{ p[1] }}</td>
+                <td>{{ p[2] }} - {{ p[3] }}</td>
+                <td>{{ p[4].strftime('%Y-%m-%d %H:%M') if p[4] else 'N/A' }}</td>
+                <td>
+                    {% if p[5] %}
+                        <span class="status-viewed">Viewed</span>
+                    {% else %}
+                        <span class="status-new">New</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('payslips.view', payslip_id=p[0]) }}" class="btn btn-sm btn-primary" target="_blank">View PDF</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No payslips received yet. Please check back later.</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: payroll-portal
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn wsgi:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: FLASK_DEBUG
+        value: "0"
+    databases:
+      - name: payroll-db
+        plan: free
+        postgresMajorVersion: "15"
+    autoDeploy: true

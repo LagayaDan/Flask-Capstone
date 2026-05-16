@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}My Time Logs{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>My Time Logs</h1>
+    <p class="page-subtitle">All clock-in and clock-out records</p>
+</div>
+
+{% if rows %}
+<div class="table-wrapper">
+    <table class="data-table data-table-scroll">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Week</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] or "—" }}</td>
+                <td>{{ row[3] or "—" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p class="table-count">{{ rows|length }} record(s) found.</p>
+{% else %}
+<div class="empty-state">
+    <p>No time log records found for your account.</p>
+</div>
+{% endif %}
+{% endblock %}

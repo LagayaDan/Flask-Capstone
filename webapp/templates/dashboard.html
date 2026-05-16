@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}My Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>My Dashboard</h1>
+    <p class="page-subtitle">Your payroll summary</p>
+</div>
+
+{% if emp %}
+<div class="info-grid">
+    <div class="info-card">
+        <span class="info-label">Name</span>
+        <span class="info-value">{{ emp[1] }}</span>
+    </div>
+    <div class="info-card">
+        <span class="info-label">Department</span>
+        <span class="info-value">{{ emp[2] }}</span>
+    </div>
+    <div class="info-card">
+        <span class="info-label">Total Regular Hours</span>
+        <span class="info-value">{{ emp[3] }}</span>
+    </div>
+    <div class="info-card">
+        <span class="info-label">Late Minutes</span>
+        <span class="info-value">{{ emp[4] }}</span>
+    </div>
+    <div class="info-card">
+        <span class="info-label">Overtime</span>
+        <span class="info-value">{{ emp[5] }}</span>
+    </div>
+    <div class="info-card">
+        <span class="info-label">Absences</span>
+        <span class="info-value">{{ emp[6] }}</span>
+    </div>
+</div>
+
+<div class="data-section">
+    <h2>My Attendance Summary</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Regular Hours</th>
+                <th>Late (min)</th>
+                <th>Overtime</th>
+                <th>Absences</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ emp[0] }}</td>
+                <td>{{ emp[1] }}</td>
+                <td>{{ emp[2] }}</td>
+                <td>{{ emp[3] }}</td>
+                <td>{{ emp[4] }}</td>
+                <td>{{ emp[5] }}</td>
+                <td>{{ emp[6] }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No attendance record found for your account. Contact the admin.</p>
+</div>
+{% endif %}
+{% endblock %}
