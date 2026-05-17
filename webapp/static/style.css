@@ -172,6 +172,10 @@ body {
     .info-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
+    .data-table th, .data-table td {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -179,7 +183,8 @@ body {
         padding: 0 12px;
     }
     .nav-link {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        padding: 8px 10px;
     }
     .container {
         padding: 12px;
@@ -189,14 +194,75 @@ body {
         width: 95%;
     }
     .info-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
     .data-table th, .data-table td {
-        padding: 8px 10px;
-        font-size: 0.8rem;
+        padding: 6px 8px;
+        font-size: 0.75rem;
     }
     .btn {
         padding: 8px 16px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
+    .form-input {
+        padding: 12px 16px;
+        font-size: 1rem;
+    }
+    .login-header h1 {
+        font-size: 1.4rem;
+    }
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Ensure text wrapping and prevent overflow */
+.data-table th, 
+.data-table td,
+.info-label,
+.info-value,
+.alert,
+.empty-state p,
+.page-subtitle,
+.form-group label,
+.nav-link,
+.btn {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Make tables more responsive on small screens */
+.data-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 16px;
+}
+
+/* Improve touch targets for mobile */
+@media (hover: none) {
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    .form-input {
+        min-height: 44px;
+    }
+    .nav-link {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Ensure images and media are responsive */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent horizontal scrolling on body */
+body {
+    overflow-x: hidden;
 }
