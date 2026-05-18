@@ -35,11 +35,12 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: all 0.3s ease;
 }
-.nav-brand { font-size: 1.25rem; font-weight: 700; letter-spacing: .3px; }
-.nav-links { display: flex; align-items: center; gap: 20px; }
-.nav-user  { font-size: .9rem; opacity: .85; }
-.nav-link  { color: white; text-decoration: none; font-size: .9rem; font-weight: 500; opacity: .9; }
+.nav-brand { font-size: 1.25rem; font-weight: 700; letter-spacing: .3px; white-space: nowrap; }
+.nav-links { display: flex; align-items: center; gap: 20px; white-space: nowrap; }
+.nav-user  { font-size: .9rem; opacity: .85; white-space: nowrap; transition: opacity 0.3s ease, color 0.3s ease; }
+.nav-link  { color: white; text-decoration: none; font-size: .9rem; font-weight: 500; opacity: .9; white-space: nowrap; transition: opacity 0.3s ease, color 0.3s ease; }
 .nav-link:hover , .nav-link-out { opacity: 1; color: var(--accent); }
 .nav-link-out { color: var(--accent); }
 
@@ -185,39 +186,73 @@ body {
     .navbar {
         padding: 0 16px;
         height: auto;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        overflow-x: auto;
     }
-    .nav-brand, .nav-links, .nav-user {
-        width: 100%;
-        justify-content: center;
+    .nav-brand {
+        font-size: 1.1rem;
+        min-width: max-content;
     }
     .nav-links {
-        margin-top: 8px;
         gap: 12px;
+        flex-shrink: 0;
+        overflow-x: auto;
+        padding: 8px 0;
+    }
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+    .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
     }
     .container {
         padding: 16px;
     }
-    .login-card {
-        padding: 24px 20px;
-        width: 90%;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0 12px;
+        gap: 8px;
     }
-    .info-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    .nav-brand {
+        font-size: 1rem;
     }
-    .data-table th, .data-table td {
-        padding: 8px 12px;
-        font-size: 0.85rem;
+    .nav-links {
+        gap: 8px;
+        padding: 6px 0;
+    }
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 6px 8px;
     }
 }
 
 @media (max-width: 480px) {
     .navbar {
-        padding: 0 12px;
+        padding: 0 10px;
+        gap: 6px;
+    }
+    .nav-brand {
+        font-size: 0.95rem;
+        min-width: fit-content;
+    }
+    .nav-links {
+        gap: 6px;
+        padding: 4px 0;
     }
     .nav-link {
         font-size: 0.75rem;
-        padding: 8px 10px;
+        padding: 6px 8px;
+        border-radius: 3px;
+        transition: all 0.2s ease;
+    }
+    .nav-link:active {
+        background: rgba(255, 255, 255, 0.15);
+        transform: scale(0.98);
     }
     .container {
         padding: 12px;
